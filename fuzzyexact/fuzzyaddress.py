@@ -1,0 +1,2 @@
+def fuzzyexact():
+    return 'testing'
