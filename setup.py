@@ -14,5 +14,5 @@ setuptools.setup(name='fuzzyexact',
       keywords=['fuzzy', 'fuzzymatch', 'fuzzyexact', 'fuzzy block'],
       license='MIT',
       packages=setuptools.find_packages(),
-      install_requires=['pandas', 'fuzzywuzzy', 'string', 're']
+      install_requires=['pandas', 'fuzzywuzzy']
       )
