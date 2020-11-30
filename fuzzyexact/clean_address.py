@@ -24,3 +24,5 @@ def clean_address(df, address_col):
     
     #clean addresses
     df[address_col] = address
+    
+    return df
