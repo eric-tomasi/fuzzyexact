@@ -1,28 +1,25 @@
-def clean_address(df, address_col):
+def clean_address(df, address):
     '''returns address in all CAPS, shortens road type (ST, RD, AVE), and strips out room/apt numbers'''
 
     #capitalize
-    address = df[address_col].upper()
+    df[address] = df[address].str.upper()
 
     #abbreviate road type
-    address = re.sub(r'\w*(?<!\w)(STREET)(?!\w)', 'ST', address)
-    address = re.sub(r'\w*(?<!\w)(ROAD)(?!\w)', 'RD', address)
-    address = re.sub(r'\w*(?<!\w)(AVENUE)(?!\w)', 'AVE', address)
-    address = re.sub(r'\w*(?<!\w)(CLOSE)(?!\w)', 'CL', address)
-    address = re.sub(r'\w*(?<!\w)(COURT)(?!\w)', 'CT', address)
-    address = re.sub(r'\w*(?<!\w)(BOULEVARDE)(?!\w)', 'BLVD', address)
-    address = re.sub(r'\w*(?<!\w)(DRIVE)(?!\w)', 'DR', address)
-    address = re.sub(r'\w*(?<!\w)(LANE)(?!\w)', 'LN', address)
-    address = re.sub(r'\w*(?<!\w)(PLACE)(?!\w)', 'PL', address)
-    address = re.sub(r'\w*(?<!\w)(SQUARE)(?!\w)', 'SQ', address)
-    address = re.sub(r'\w*(?<!\w)(CIRCUIT)(?!\w)', 'CCT', address)
+    df[address] = df[address].str.replace(r'\w*(?<!\w)(STREET)(?!\w)', 'ST')
+    df[address] = df[address].str.replace(r'\w*(?<!\w)(ROAD)(?!\w)', 'RD')
+    df[address] = df[address].str.replace(r'\w*(?<!\w)(AVENUE)(?!\w)', 'AVE')
+    df[address] = df[address].str.replace(r'\w*(?<!\w)(CLOSE)(?!\w)', 'CL')
+    df[address] = df[address].str.replace(r'\w*(?<!\w)(COURT)(?!\w)', 'CT')
+    df[address] = df[address].str.replace(r'\w*(?<!\w)(BOULEVARDE)(?!\w)', 'BLVD')
+    df[address] = df[address].str.replace(r'\w*(?<!\w)(DRIVE)(?!\w)', 'DR')
+    df[address] = df[address].str.replace(r'\w*(?<!\w)(LANE)(?!\w)', 'LN')
+    df[address] = df[address].str.replace(r'\w*(?<!\w)(PLACE)(?!\w)', 'PL')
+    df[address] = df[address].str.replace(r'\w*(?<!\w)(SQUARE)(?!\w)', 'SQ')
+    df[address] = df[address].str.replace(r'\w*(?<!\w)(CIRCUIT)(?!\w)', 'CCT')
 
     #strip room, apt, and building numbers
-    address = re.sub(r'STE[\s][\d]+$', '', address).strip()
-    address = re.sub(r'RM[\s][\d]+$', '', address).strip()
-    address = re.sub(r'BLDG[\s][\d]+$', '', address).strip()
-    
-    #clean addresses
-    df[address_col] = address
+    df[address] = df[address].str.replace(r'STE[\s][\d]+$', '')
+    df[address] = df[address].str.replace(r'RM[\s][\d]+$', '')
+    df[address] = df[address].str.replace(r'BLDG[\s][\d]+$', '')
     
     return df
