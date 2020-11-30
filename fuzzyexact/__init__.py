@@ -1,1 +1,1 @@
-from fuzzyexact import fuzzyexact
+from .fuzzyexact import fuzzyexact
