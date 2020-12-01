@@ -4,10 +4,10 @@ Perform fuzzy matching against two pandas dataframes with optional exact matches
 <br/>
 
 ## Requirements
-Python 2.7 or higher
-Pandas
-FuzzyWuzzy
-python-Levenshtein
+Python 2.7 or higher<br/>
+Pandas<br/>
+FuzzyWuzzy<br/>
+python-Levenshtein<br/>
 <br/>
 <br/>
 
