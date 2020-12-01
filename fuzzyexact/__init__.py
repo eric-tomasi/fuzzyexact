@@ -1,1 +1,3 @@
-from .fuzzyexact import fuzzyexact, remove_punctuation, clean_address
+from .fuzzyexact import fuzzyexact
+from .remove_punctuation import remove_punctuation
+from .clean_address import clean_address
