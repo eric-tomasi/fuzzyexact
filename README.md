@@ -7,7 +7,7 @@ Perform fuzzy matching against two pandas dataframes with optional exact matches
 Python 2.7 or higher<br/>
 Pandas<br/>
 FuzzyWuzzy<br/>
-python-Levenshtein<br/>
+python-Levenshtein (optional)<br/>
 <br/>
 <br/>
 
