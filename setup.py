@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(name='fuzzyexact',
-      version='0.0.9',
+      version='1.0.0',
       description='Perform fuzzy matching against two pandas dataframes with optional exact matches',
       long_description=long_description,
       long_description_content_type='text/markdown',
