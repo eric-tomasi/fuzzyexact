@@ -16,27 +16,27 @@ class TestCleanAddress(unittest.TestCase):
 
                'address': ['150 right street? RM 205', 
                            '125 main road STE 5', 
-                           '325 left _avenue', 
+                           '325 left avenue', 
                            '255 test/close', 
                            '122 a BOULEVARDE', 
                            '556 meadow drive BLdG 1', 
                            '225 lark lane', 
                            '322 park place', 
-                           '998 castle square_', 
+                           '998 castle square', 
                            '020889 country circuit', 
                            '123 high street ' + r'!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'], 
 
-                'clean_address': ['150 right ST?', 
-                           '125 main RD', 
-                           '325 left _AVE', 
-                           '255 test/CL', 
-                           '122 a BLVD', 
-                           '556 meadow DR', 
-                           '225 lark LN', 
-                           '322 park PL', 
-                           '998 castle SQ_', 
-                           '020889 country CCT', 
-                           '123 high ST ' + r'!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'],
+                'clean_address': ['150 RIGHT ST?', 
+                           '125 MAIN RD', 
+                           '325 left AVE', 
+                           '255 TEST/CL', 
+                           '122 A BLVD', 
+                           '556 MEADOW DR', 
+                           '225 LARK LN', 
+                           '322 PARK PL', 
+                           '998 CASTLE SQ', 
+                           '020889 COUNTRY CCT', 
+                           '123 HIGH ST ' + r'!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'],
 
                 'raw_road_types': ['street', 'road', 'avenue', 'close', 'BOULEVARDE', 'drive', 'lane', 'place', 'square', 'circuit', 'street'],
 
@@ -56,6 +56,14 @@ class TestCleanAddress(unittest.TestCase):
     self.bldg = fuzzyexact.clean_address(self.df_test, 'raw_buildings')
     self.clean_addr = fuzzyexact.clean_address(self.df_test, 'address')
 
+  def tearDown(self):
+    '''delete all dataframes'''
+    self.df = None
+    self.df_test = None
+    self.road = None
+    self.bldg = None
+    self.clean_addr = None
+
   def test_address_shorten(self):
     '''ensure address road types are truncated properly (street->ST)'''
     self.assertTrue(self.df['clean_road_types'].equals(self.road['raw_road_types']))  
@@ -64,9 +72,9 @@ class TestCleanAddress(unittest.TestCase):
     '''ensure building, suite and room numbers are stripped'''
     self.assertTrue(self.df['clean_buildings'].equals(self.bldg['raw_buildings'])) 
 
-  def test_full(self):
+  def test_full_addr(self):
     '''ensure full address column is truncated properly and removes building/suite/room numbers at once'''
-    self.assertTrue(self.df['clean_address'].str.upper().equals(self.clean_addr['address']))
+    self.assertTrue(self.df['clean_address'].equals(self.clean_addr['address']))
 
   def test_dtype(self):
     '''ensure that the object returned is a pandas dataframe'''
@@ -76,7 +84,3 @@ class TestCleanAddress(unittest.TestCase):
   def test_records(self):
     '''ensure all rows are returned'''
     self.assertEqual(self.df.count(axis='columns').all(), self.clean_addr.count(axis='columns').all())
-
-
-if __name__ == 'main':
- unittest.main()
