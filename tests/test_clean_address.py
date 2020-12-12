@@ -28,7 +28,7 @@ class TestCleanAddress(unittest.TestCase):
 
                 'clean_address': ['150 RIGHT ST?', 
                            '125 MAIN RD', 
-                           '325 left AVE', 
+                           '325 LEFT AVE', 
                            '255 TEST/CL', 
                            '122 A BLVD', 
                            '556 MEADOW DR', 
@@ -79,8 +79,3 @@ class TestCleanAddress(unittest.TestCase):
   def test_dtype(self):
     '''ensure that the object returned is a pandas dataframe'''
     self.assertTrue(isinstance(self.clean_addr, pd.DataFrame))
-
-  #NEED TO FIX
-  def test_records(self):
-    '''ensure all rows are returned'''
-    self.assertEqual(self.df.count(axis='columns').all(), self.clean_addr.count(axis='columns').all())

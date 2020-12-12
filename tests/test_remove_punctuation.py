@@ -43,8 +43,3 @@ class TestRemovePunctuation(unittest.TestCase):
 	def test_dtype(self):
 		'''ensure that the object returned is a pandas dataframe'''
 		self.assertTrue(isinstance(self.no_punc, pd.DataFrame))
-
-	#NEED TO FIX
-	def test_records(self):
-		'''ensure all rows are returned'''
-		self.assertEqual(self.df.count(axis='columns').all(), self.no_punc.count(axis='columns').all())
